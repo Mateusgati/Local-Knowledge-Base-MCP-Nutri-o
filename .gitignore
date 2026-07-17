@@ -10,9 +10,11 @@
 
 # Banco vetorial (dados locais)
 vector_db/
+vector_db_nutricao/
 
 # PDFs ( opcional - muito grandes para Git)
 biblioteca_docs/*.pdf
+documentos_nutricao/*.pdf
 
 # Go
 *.test

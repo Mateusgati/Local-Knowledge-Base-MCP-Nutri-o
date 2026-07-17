@@ -36,7 +36,7 @@ Um servidor [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) que
 | --------------------------- | ---------------------------------------------------- |
 | **Zero Dependências**       | Sem Docker, sem servidores externos, sem Python      |
 | **Banco Vetorial Embutido** | chromem-go persiste localmente no disco              |
-| **Google AI Embeddings**    | Modelo `text-embedding-004` (768 dimensões)          |
+| **Google AI Embeddings**    | Modelo `gemini-embedding-2`                          |
 | **Protocolo MCP**           | Compatível com Claude Desktop, Antigravity, e outros |
 | **100% Local**              | Seus PDFs nunca saem do seu computador\*             |
 
@@ -94,7 +94,7 @@ Verifica o status do banco vetorial.
 git clone https://github.com/Capman002/Local-Knowledge-Base-MCP---golang.git
 cd Local-Knowledge-Base-MCP---golang
 
-go build -o senior-architect-rag.exe .
+go build -o base-nutricao-rag.exe .
 go build -o ingest.exe ./cmd/ingest
 ```
 
@@ -107,21 +107,21 @@ Crie um arquivo `.env`:
 GOOGLE_API_KEY=sua-api-key-aqui
 
 # Opcional - personalize para seu caso de uso
-COLLECTION_NAME=minha_base_conhecimento
-DB_PATH=vector_db
-DOCS_DIR=meus_documentos
-EMBEDDING_MODEL=text-embedding-004
+COLLECTION_NAME=biblioteca_nutricao
+DB_PATH=vector_db_nutricao
+DOCS_DIR=documentos_nutricao
+EMBEDDING_MODEL=gemini-embedding-2
 ```
 
 ### 3. Adicionar seus PDFs
 
-Crie a pasta configurada em `DOCS_DIR` (padrão: `biblioteca_docs/`) e coloque seus PDFs:
+Coloque apenas os PDFs de nutrição na pasta configurada em `DOCS_DIR` (padrão: `documentos_nutricao/`):
 
 ```
-biblioteca_docs/
-├── livro1.pdf
-├── manual_tecnico.pdf
-├── apostila.pdf
+documentos_nutricao/
+├── livro_nutricao.pdf
+├── diretriz_clinica.pdf
+├── artigo_cientifico.pdf
 └── ...
 ```
 
@@ -139,7 +139,7 @@ Adicione ao Claude Desktop ou Antigravity:
 {
   "mcpServers": {
     "minha-base-conhecimento": {
-      "command": "C:/caminho/para/senior-architect-rag.exe",
+      "command": "C:/caminho/para/base-nutricao-rag.exe",
       "args": [],
       "env": {}
     }
@@ -156,10 +156,10 @@ Adicione ao Claude Desktop ou Antigravity:
 | Variável          | Padrão                   | Descrição                    |
 | ----------------- | ------------------------ | ---------------------------- |
 | `GOOGLE_API_KEY`  | _(obrigatório)_          | Chave da API Google AI       |
-| `COLLECTION_NAME` | `biblioteca_arquitetura` | Nome da sua coleção          |
-| `DB_PATH`         | `vector_db`              | Onde salvar o banco vetorial |
-| `DOCS_DIR`        | `biblioteca_docs`        | Pasta com seus PDFs          |
-| `EMBEDDING_MODEL` | `text-embedding-004`     | Modelo de embeddings         |
+| `COLLECTION_NAME` | `biblioteca_nutricao`  | Nome da sua coleção          |
+| `DB_PATH`         | `vector_db_nutricao`   | Onde salvar o banco vetorial |
+| `DOCS_DIR`        | `documentos_nutricao`  | Pasta com seus PDFs          |
+| `EMBEDDING_MODEL` | `gemini-embedding-2`   | Modelo de embeddings         |
 
 ### Exemplos de Configuração
 
@@ -188,9 +188,7 @@ DOCS_DIR=literatura
 
 ## 📝 Sobre a Configuração Padrão
 
-Os nomes padrão no código (`Senior-Architect-RAG`, `biblioteca_arquitetura`) refletem o caso de uso original: uma base de conhecimento de **literatura de arquitetura de software** (DDD, System Design, Microservices, etc.).
-
-Você pode usar esses padrões ou personalizar via `.env` para qualquer domínio.
+Esta cópia foi configurada para nutrição. A pasta, a coleção, o banco vetorial e a descrição da ferramenta MCP foram isolados do caso de uso original de arquitetura de software.
 
 ---
 
@@ -201,7 +199,7 @@ Você pode usar esses padrões ou personalizar via `.env` para qualquer domínio
 | Chunk Size             | 800 caracteres |
 | Chunk Overlap          | 150 caracteres |
 | Resultados por Query   | Top 5          |
-| Dimensões do Embedding | 768            |
+| Dimensões do Embedding | Padrão do modelo |
 | Comunicação            | MCP via stdio  |
 
 ---
@@ -211,8 +209,8 @@ Você pode usar esses padrões ou personalizar via `.env` para qualquer domínio
 ```
 ├── main.go                 # Servidor MCP
 ├── cmd/ingest/main.go      # Ingestor de PDFs
-├── biblioteca_docs/        # Seus PDFs (git-ignored)
-├── vector_db/              # Banco vetorial (git-ignored)
+├── documentos_nutricao/    # Seus PDFs (git-ignored)
+├── vector_db_nutricao/     # Banco vetorial (git-ignored)
 ├── .env                    # Configurações (git-ignored)
 └── .env.example            # Template
 ```

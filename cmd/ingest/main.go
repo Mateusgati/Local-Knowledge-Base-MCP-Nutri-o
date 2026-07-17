@@ -36,11 +36,11 @@ type Config struct {
 
 func loadConfig() Config {
 	return Config{
-		DocsDir:        getEnvOrDefault("DOCS_DIR", "biblioteca_docs"),
+		DocsDir:        getEnvOrDefault("DOCS_DIR", "documentos_nutricao"),
 		GoogleAPIKey:   getEnvOrDefault("GOOGLE_API_KEY", ""),
-		EmbeddingModel: getEnvOrDefault("EMBEDDING_MODEL", "text-embedding-004"),
-		Collection:     getEnvOrDefault("COLLECTION_NAME", "biblioteca_arquitetura"),
-		DBPath:         getEnvOrDefault("DB_PATH", "vector_db"),
+		EmbeddingModel: getEnvOrDefault("EMBEDDING_MODEL", "gemini-embedding-2"),
+		Collection:     getEnvOrDefault("COLLECTION_NAME", "biblioteca_nutricao"),
+		DBPath:         getEnvOrDefault("DB_PATH", "vector_db_nutricao"),
 	}
 }
 

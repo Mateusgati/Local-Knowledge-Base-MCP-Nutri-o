@@ -1,7 +1,7 @@
 {
   "mcpServers": {
-    "senior-architect-rag": {
-      "command": "C:/Senior-Architect-RAG/senior-architect-rag.exe",
+    "base-nutricao-rag": {
+      "command": "C:/Base-Nutricao-RAG/base-nutricao-rag.exe",
       "args": [],
       "env": {}
     }
